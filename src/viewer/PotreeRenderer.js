@@ -30,7 +30,7 @@ export class PotreeRenderer {
 
 		// render skybox
 		if(viewer.background === "skybox"){
-			renderer.setClearColor(0xff0000, 1);
+			renderer.setClearColor(0x000000, 1);
 		}else if(viewer.background === "gradient"){
 			renderer.setClearColor(0x000000, 1);
 		}else if(viewer.background === "black"){
