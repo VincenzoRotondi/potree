@@ -89,14 +89,16 @@ import {WorkerPool} from "./WorkerPool.js";
 export const workerPool = new WorkerPool();
 
 export const version = {
+	name: 'Potree custom',
 	major: 1,
 	minor: 8,
-	suffix: '.1'
+	patch: 1,
+	suffix: ''
 };
 
 export let lru = new LRU();
 
-console.log('Potree ' + version.major + '.' + version.minor + version.suffix);
+console.log(`${version.name} ${version.major}.${version.minor}.${version.patch}${version.suffix}`);
 
 export let pointBudget = 1 * 1000 * 1000;
 export let framenumber = 0;
