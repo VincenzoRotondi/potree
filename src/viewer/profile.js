@@ -479,24 +479,40 @@ export class ProfileWindow extends EventDispatcher {
 		});
 
 		$('#potree_download_csv_icon').click(() => {
-
-			let points = this.getProfilePoints();
-
-			let string = CSVExporter.toString(points);
-
-			let blob = new Blob([string], { type: "text/string" });
-			$('#potree_download_profile_ortho_link').attr('href', URL.createObjectURL(blob));
+			$('#potree_download_profile_ortho_link').attr('href', this.getCsvUrl());
 		});
 
 		$('#potree_download_las_icon').click(() => {
-
-			let points = this.getProfilePoints();
-
-			let buffer = LASExporter.toLAS(points);
-
-			let blob = new Blob([buffer], { type: "application/octet-binary" });
-			$('#potree_download_profile_link').attr('href', URL.createObjectURL(blob));
+			$('#potree_download_profile_link').attr('href', this.getLasUrl());
 		});
+	}
+
+	/**
+	 * Restituisce l'url del CSV
+	 */
+	getCsvUrl() {
+		// Recupero punti del profilo
+		let points = this.getProfilePoints();
+		// trasformazione in stringa
+		let string = CSVExporter.toString(points);
+		// creazione blob
+		let blob = new Blob([string], { type: "text/string" });
+		// Restituzione url
+		return URL.createObjectURL(blob);
+	}
+
+	/**
+	 * Restituisce l'url del LAS
+	 */
+	getLasUrl() {
+		// Recupero punti del profilo
+		let points = this.getProfilePoints();
+		// trasformazione in ArrayBuffer
+		let buffer = LASExporter.toLAS(points);
+		// creazione blob
+		let blob = new Blob([buffer], { type: "application/octet-binary" });
+		// Restituzione url
+		return URL.createObjectURL(blob);
 	}
 
 	/**
