@@ -232,7 +232,8 @@ class ProfileFakeOctree extends PointCloudTree {
 export class ProfileWindow extends EventDispatcher {
 	constructor(viewer) {
 		super();
-
+		// Offset per l'altezza
+		this.elevationOffset = 0;
 		this.viewer = viewer;
 		this.elRoot = $('#profile_window');
 		this.renderArea = this.elRoot.find('#profileCanvasContainer');
@@ -280,6 +281,19 @@ export class ProfileWindow extends EventDispatcher {
 		this.elRoot.i18n();
 	}
 
+	/**
+	 * Imposta l'offset dell'altezza
+	 */
+	setElevationOffset(value) {
+		this.elevationOffset = value;
+	}
+
+	/**
+	 * Restituisce l'offset dell'altezza
+	 */
+	getElevationOffset() {
+		return this.elevationOffset;
+	}
 	initListeners() {
 		$(window).resize(() => {
 			if (this.enabled) {
@@ -392,7 +406,7 @@ export class ProfileWindow extends EventDispatcher {
 								</tr>
 								<tr>
 									<td>z</td>
-									<td>${values[2]}</td>
+									<td>${(parseInt(values[2]) + this.elevationOffset).toFixed(3)}</td>
 								</tr>`;
 						} else if (attributeName === 'rgba') {
 							html += `
@@ -536,7 +550,7 @@ export class ProfileWindow extends EventDispatcher {
 					// Salvataggio coordinate reali nell'array
 					truePosition[3 * i + 0] += pointcloud.position.x;
 					truePosition[3 * i + 1] += pointcloud.position.y;
-					truePosition[3 * i + 2] += pointcloud.position.z;
+					truePosition[3 * i + 2] += pointcloud.position.z + this.elevationOffset;
 				}
 				// Sostituzione array coordinate visualizzate con array coordinate reali
 				pointSet.data.position = truePosition;
