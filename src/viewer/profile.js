@@ -406,7 +406,7 @@ export class ProfileWindow extends EventDispatcher {
 								</tr>
 								<tr>
 									<td>z</td>
-									<td>${(parseInt(values[2]) + this.elevationOffset).toFixed(3)}</td>
+									<td>${(parseFloat(values[2]) + this.elevationOffset).toFixed(3)}</td>
 								</tr>`;
 						} else if (attributeName === 'rgba') {
 							html += `
