@@ -91,8 +91,8 @@ export const workerPool = new WorkerPool();
 export const version = {
 	name: 'Potree custom',
 	major: 1,
-	minor: 8,
-	patch: 1,
+	minor: 9,
+	patch: 0,
 	suffix: ''
 };
 
