@@ -478,30 +478,9 @@ export class ProfileWindow extends EventDispatcher {
 			this.hide();
 		});
 
-		let getProfilePoints = () => {
-			let points = new Points();
-			
-			for(let [pointcloud, entry] of this.pointclouds){
-				for(let pointSet of entry.points){
-
-					let originPos = pointSet.data.position;
-					let trueElevationPosition = new Float32Array(originPos);
-					for(let i = 0; i < pointSet.numPoints; i++){
-						trueElevationPosition[3 * i + 2] += pointcloud.position.z;
-					}
-
-					pointSet.data.position = trueElevationPosition;
-					points.add(pointSet);
-					pointSet.data.position = originPos;
-				}
-			}
-
-			return points;
-		};
-
 		$('#potree_download_csv_icon').click(() => {
 			
-			let points = getProfilePoints();
+			let points = this.getProfilePoints();
 
 			let string = CSVExporter.toString(points);
 
@@ -511,7 +490,7 @@ export class ProfileWindow extends EventDispatcher {
 
 		$('#potree_download_las_icon').click(() => {
 
-			let points = getProfilePoints();
+			let points = this.getProfilePoints();
 
 			let buffer = LASExporter.toLAS(points);
 
@@ -520,6 +499,40 @@ export class ProfileWindow extends EventDispatcher {
 		});
 	}
 
+		/**
+		 * Restituisce una collezione di punti
+		 * Nota: originPos sono le coordinate shiftate per la visualizzazione
+		 * truePosition sono le coordinate reali con valori più grandi
+		 */
+		 getProfilePoints() {
+			// Inizializzazione collezione di punti
+			let points = new Points();
+			// Ciclo sulle nuvole selezionate dal profiler
+			for(let [pointcloud, entry] of this.pointclouds){
+				// Ciclo sui punti delle nuvole selezionate
+				for(let pointSet of entry.points){
+					// Salvataggio array coordinate visualizzate
+					let originPos = pointSet.data.position;
+					// Inizializzazione array coordinate reali
+					let truePosition = new Float64Array(originPos);
+					// Ciclo sul numero di punti
+					for(let i = 0; i < pointSet.numPoints; i++){
+						// Salvataggio coordinate reali nell'array
+						truePosition[3 * i + 0] += pointcloud.position.x;
+						truePosition[3 * i + 1] += pointcloud.position.y;
+						truePosition[3 * i + 2] += pointcloud.position.z;
+					}
+					// Sostituzione array coordinate visualizzate con array coordinate reali
+					pointSet.data.position = truePosition;
+					// aggiunta coordinate alla collezione
+					points.add(pointSet);
+					// Ripristino coordinate visualizzate
+					pointSet.data.position = originPos;
+				}
+			}
+			// Restituzione collezione di punti
+			return points;
+		}
 	selectPoint (mileage, elevation, radius) {
 		let closest = {
 			distance: Infinity,
