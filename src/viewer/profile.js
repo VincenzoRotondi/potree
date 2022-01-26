@@ -550,7 +550,7 @@ export class ProfileWindow extends EventDispatcher {
 					// Salvataggio coordinate reali nell'array
 					truePosition[3 * i + 0] += pointcloud.position.x;
 					truePosition[3 * i + 1] += pointcloud.position.y;
-					truePosition[3 * i + 2] += pointcloud.position.z;
+					truePosition[3 * i + 2] += pointcloud.position.z + this.elevationOffset;
 				}
 				// Sostituzione array coordinate visualizzate con array coordinate reali
 				pointSet.data.position = truePosition;
