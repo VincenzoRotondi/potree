@@ -232,7 +232,8 @@ class ProfileFakeOctree extends PointCloudTree {
 export class ProfileWindow extends EventDispatcher {
 	constructor(viewer) {
 		super();
-
+		// Offset per l'altezza
+		this.elevationOffset = 0;
 		this.viewer = viewer;
 		this.elRoot = $('#profile_window');
 		this.renderArea = this.elRoot.find('#profileCanvasContainer');
@@ -280,6 +281,19 @@ export class ProfileWindow extends EventDispatcher {
 		this.elRoot.i18n();
 	}
 
+	/**
+	 * Imposta l'offset dell'altezza
+	 */
+	setElevationOffset(value) {
+		this.elevationOffset = value;
+	}
+
+	/**
+	 * Restituisce l'offset dell'altezza
+	 */
+	getElevationOffset() {
+		return this.elevationOffset;
+	}
 	initListeners() {
 		$(window).resize(() => {
 			if (this.enabled) {
