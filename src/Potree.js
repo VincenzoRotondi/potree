@@ -297,3 +297,7 @@ export function loadPointCloud(path, name, callback){
 		}
 	});
 })(jQuery);
+
+export function getVersion(){
+	return version;
+};
