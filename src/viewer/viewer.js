@@ -331,6 +331,10 @@ export class Viewer extends EventDispatcher{
 		}
 	}
 
+	getThreejsVersion(){
+	return THREE.REVISION;
+	}
+
 	onCrash(error){
 
 		$(this.renderArea).empty();
