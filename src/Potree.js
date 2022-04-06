@@ -98,7 +98,7 @@ export const version = {
 
 export let lru = new LRU();
 
-console.log(`${version.name} ${version.major}.${version.minor}.${version.patch}${version.suffix}`);
+// console.log(`${version.name} ${version.major}.${version.minor}.${version.patch}${version.suffix}`);
 
 export let pointBudget = 1 * 1000 * 1000;
 export let framenumber = 0;

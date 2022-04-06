@@ -1236,7 +1236,7 @@ export class Viewer extends EventDispatcher{
 			VRButton.createButton(this.renderer).then(vrButton => {
 
 				if(vrButton == null){
-					console.log("VR not supported or active.");
+					// console.log("VR not supported or active.");
 
 					return;
 				}
@@ -1405,7 +1405,7 @@ export class Viewer extends EventDispatcher{
 
 	initThree () {
 
-		console.log(`initializing three.js ${THREE.REVISION}`);
+		// console.log(`initializing three.js ${THREE.REVISION}`);
 
 		let width = this.renderArea.clientWidth;
 		let height = this.renderArea.clientHeight;
