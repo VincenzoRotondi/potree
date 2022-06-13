@@ -359,7 +359,13 @@ export class Utils {
 		return line;
 	}
 
-	static createBackgroundTexture (width, height) {
+    /**
+     * Imposta il colore di sfondo
+     * @param width 
+     * @param height 
+     * @param chroma array rgb (utilizzare numeri compresi tra 0 e 7)
+     */
+	static createBackgroundTexture (width, height, chroma = [1, 1.5, 1.7]) {
 		function gauss (x, y) {
 			return (1 / (2 * Math.PI)) * Math.exp(-(x * x + y * y) / 2);
 		};
@@ -368,7 +374,6 @@ export class Utils {
 		let size = width * height;
 		let data = new Uint8Array(3 * size);
 
-		let chroma = [1, 1.5, 1.7];
 		let max = gauss(0, 0);
 
 		for (let x = 0; x < width; x++) {
