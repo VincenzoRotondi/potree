@@ -1352,7 +1352,6 @@ export class Sidebar{
 			elBackground.selectgroup();
 
 			elBackground.find("input").click( (e) => {
-				this.viewer.setBackground(e.target.value);
 			});
 
 			let currentBackground = this.viewer.getBackground();

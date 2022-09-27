@@ -96,6 +96,8 @@ export const version = {
 	suffix: ''
 };
 
+export const backgroundcolor = 0x000242;
+
 export let lru = new LRU();
 
 // console.log(`${version.name} ${version.major}.${version.minor}.${version.patch}${version.suffix}`);

@@ -132,17 +132,7 @@ export class EDLRenderer{
 
 		const {renderer, background} = viewer;
 
-		if(background === "skybox"){
-			renderer.setClearColor(0x000000, 0);
-		} else if (background === 'gradient') {
-			renderer.setClearColor(0x000000, 0);
-		} else if (background === 'black') {
-			renderer.setClearColor(0x000000, 1);
-		} else if (background === 'white') {
-			renderer.setClearColor(0xFFFFFF, 1);
-		} else {
-			renderer.setClearColor(0x000000, 0);
-		}
+		renderer.setClearColor(Potree.backgroundcolor, 1);
 		
 		renderer.clear();
 
@@ -214,20 +204,6 @@ export class EDLRenderer{
 				lights.push(node);
 			}
 		});
-
-		if(viewer.background === "skybox"){
-			viewer.skybox.camera.rotation.copy(viewer.scene.cameraP.rotation);
-			viewer.skybox.camera.fov = viewer.scene.cameraP.fov;
-			viewer.skybox.camera.aspect = viewer.scene.cameraP.aspect;
-
-			viewer.skybox.parent.rotation.x = 0;
-			viewer.skybox.parent.updateMatrixWorld();
-
-			viewer.skybox.camera.updateProjectionMatrix();
-			viewer.renderer.render(viewer.skybox.scene, viewer.skybox.camera);
-		} else if (viewer.background === 'gradient') {
-			viewer.renderer.render(viewer.scene.sceneBG, viewer.scene.cameraBG);
-		} 
 
 		//TODO adapt to multiple lights
 		this.renderShadowMap(visiblePointClouds, camera, lights);
