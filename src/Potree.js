@@ -96,7 +96,7 @@ export const version = {
 	suffix: ''
 };
 
-export const backgroundcolor = 0x000242;
+export const backgroundcolor = 0x002040;
 
 export let lru = new LRU();
 
