@@ -15,7 +15,6 @@ export class Scene extends EventDispatcher{
 		this.annotations = new Annotation();
 		
 		this.scene = new THREE.Scene();
-		this.sceneBG = new THREE.Scene();
 		this.scenePointCloud = new THREE.Scene();
 
 		this.cameraP = new THREE.PerspectiveCamera(this.fov, 1, 0.1, 1000*1000);
@@ -374,22 +373,6 @@ export class Scene extends EventDispatcher{
 		
 		let light = new THREE.AmbientLight( 0x555555 ); // soft white light
 		this.scenePointCloud.add( light );
-
-		{ // background
-			let texture = Utils.createBackgroundTexture(512, 512);
-
-			texture.minFilter = texture.magFilter = THREE.NearestFilter;
-			texture.minFilter = texture.magFilter = THREE.LinearFilter;
-			let bg = new THREE.Mesh(
-				new THREE.PlaneBufferGeometry(2, 2, 1),
-				new THREE.MeshBasicMaterial({
-					map: texture
-				})
-			);
-			bg.material.depthTest = false;
-			bg.material.depthWrite = false;
-			this.sceneBG.add(bg);
-		}
 
 		// { // lights
 		// 	{

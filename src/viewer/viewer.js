@@ -176,7 +176,6 @@ export class Viewer extends EventDispatcher{
 		this.navigationCube = null;
 		this.compass = null;
 		
-		this.skybox = null;
 		this.clock = new THREE.Clock();
 		this.background = null;
 

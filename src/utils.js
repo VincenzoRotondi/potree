@@ -280,64 +280,6 @@ export class Utils {
 
 	}
 
-	static loadSkybox (path) {
-		let parent = new THREE.Object3D("skybox_root");
-
-		let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 100000);
-		camera.up.set(0, 0, 1);
-		let scene = new THREE.Scene();
-
-		let format = '.jpg';
-		let urls = [
-			path + 'px' + format, path + 'nx' + format,
-			path + 'py' + format, path + 'ny' + format,
-			path + 'pz' + format, path + 'nz' + format
-		];
-
-		let materialArray = [];
-		{
-			for (let i = 0; i < 6; i++) {
-				let material = new THREE.MeshBasicMaterial({
-					map: null,
-					side: THREE.BackSide,
-					depthTest: false,
-					depthWrite: false,
-					color: 0x424556
-				});
-
-				materialArray.push(material);
-
-				let loader = new THREE.TextureLoader();
-				loader.load(urls[i],
-					function loaded (texture) {
-						material.map = texture;
-						material.needsUpdate = true;
-						material.color.setHex(0xffffff);
-					}, function progress (xhr) {
-						// console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-					}, function error (xhr) {
-						console.log('An error happened', xhr);
-					}
-				);
-			}
-		}
-
-		let skyGeometry = new THREE.CubeGeometry(700, 700, 700);
-		let skybox = new THREE.Mesh(skyGeometry, materialArray);
-
-		scene.add(skybox);
-
-		scene.traverse(n => n.frustumCulled = false);
-
-		// z up
-		scene.rotation.x = Math.PI / 2;
-
-		parent.children.push(camera);
-		camera.parent = parent;
-
-		return {camera, scene, parent};
-	};
-
 	static createGrid (width, length, spacing, color) {
 		let material = new THREE.LineBasicMaterial({
 			color: color || 0x888888
@@ -357,48 +299,6 @@ export class Utils {
 		let line = new THREE.LineSegments(geometry, material, THREE.LinePieces);
 		line.receiveShadow = true;
 		return line;
-	}
-
-    /**
-     * Imposta il colore di sfondo
-     * @param width 
-     * @param height 
-     * @param chroma array rgb (utilizzare numeri compresi tra 0 e 7)
-     */
-	static createBackgroundTexture (width, height, chroma = [1, 1.5, 1.7]) {
-		function gauss (x, y) {
-			return (1 / (2 * Math.PI)) * Math.exp(-(x * x + y * y) / 2);
-		};
-
-		// map.magFilter = THREE.NearestFilter;
-		let size = width * height;
-		let data = new Uint8Array(3 * size);
-
-		let max = gauss(0, 0);
-
-		for (let x = 0; x < width; x++) {
-			for (let y = 0; y < height; y++) {
-				let u = 2 * (x / width) - 1;
-				let v = 2 * (y / height) - 1;
-
-				let i = x + width * y;
-				let d = gauss(2 * u, 2 * v) / max;
-				let r = (Math.random() + Math.random() + Math.random()) / 3;
-				r = (d * 0.5 + 0.5) * r * 0.03;
-				r = r * 0.4;
-
-				// d = Math.pow(d, 0.6);
-
-				data[3 * i + 0] = 255 * (d / 15 + 0.05 + r) * chroma[0];
-				data[3 * i + 1] = 255 * (d / 15 + 0.05 + r) * chroma[1];
-				data[3 * i + 2] = 255 * (d / 15 + 0.05 + r) * chroma[2];
-			}
-		}
-
-		let texture = new THREE.DataTexture(data, width, height, THREE.RGBFormat);
-		texture.needsUpdate = true;
-
-		return texture;
 	}
 
 	static getMousePointCloudIntersection (mouse, camera, viewer, pointclouds, params = {}) {
