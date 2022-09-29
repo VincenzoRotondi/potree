@@ -27,19 +27,7 @@ export class PotreeRenderer {
 	clear(){
 		let {viewer, renderer} = this;
 
-
-		// render skybox
-		if(viewer.background === "skybox"){
-			renderer.setClearColor(0x000000, 1);
-		}else if(viewer.background === "gradient"){
-			renderer.setClearColor(0x000000, 1);
-		}else if(viewer.background === "black"){
-			renderer.setClearColor(0x000000, 1);
-		}else if(viewer.background === "white"){
-			renderer.setClearColor(0xFFFFFF, 1);
-		}else{
-			renderer.setClearColor(0x000000, 0);
-		}
+		renderer.setClearColor(Potree.backgroundcolor, 1);
 
 		renderer.clear();
 	}
@@ -54,21 +42,6 @@ export class PotreeRenderer {
 		const renderAreaSize = renderer.getSize(new THREE.Vector2());
 		const width = params.viewport ? params.viewport[2] : renderAreaSize.x;
 		const height = params.viewport ? params.viewport[3] : renderAreaSize.y;
-
-		// render skybox
-		if(viewer.background === "skybox"){
-			viewer.skybox.camera.rotation.copy(viewer.scene.cameraP.rotation);
-			viewer.skybox.camera.fov = viewer.scene.cameraP.fov;
-			viewer.skybox.camera.aspect = viewer.scene.cameraP.aspect;
-			
-			viewer.skybox.parent.rotation.x = 0;
-			viewer.skybox.parent.updateMatrixWorld();
-
-			viewer.skybox.camera.updateProjectionMatrix();
-			renderer.render(viewer.skybox.scene, viewer.skybox.camera);
-		}else if(viewer.background === "gradient"){
-			renderer.render(viewer.scene.sceneBG, viewer.scene.cameraBG);
-		}
 		
 		for(let pointcloud of this.viewer.scene.pointclouds){
 			const {material} = pointcloud;

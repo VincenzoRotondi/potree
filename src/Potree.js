@@ -96,6 +96,16 @@ export const version = {
 	suffix: ''
 };
 
+/** Colore di sfondo */
+export const backgroundcolor = 0x002040;
+/** 
+ * Imposta il colore di sfondo
+ * @param hexcolor colore esadecimale
+ */
+export function SetBackgroundcolor(hexcolor){
+	backgroundcolor = hexcolor;
+};
+
 export let lru = new LRU();
 
 // console.log(`${version.name} ${version.major}.${version.minor}.${version.patch}${version.suffix}`);

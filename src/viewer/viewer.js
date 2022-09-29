@@ -176,7 +176,6 @@ export class Viewer extends EventDispatcher{
 		this.navigationCube = null;
 		this.compass = null;
 		
-		this.skybox = null;
 		this.clock = new THREE.Clock();
 		this.background = null;
 
@@ -305,7 +304,6 @@ export class Viewer extends EventDispatcher{
 			this.setShowBoundingBox(false);
 			this.setFreeze(false);
 			this.setControls(this.orbitControls);
-			this.setBackground('gradient');
 
 			this.scaleFactor = 1;
 
@@ -464,19 +462,6 @@ export class Viewer extends EventDispatcher{
 
 	getBackground () {
 		return this.background;
-	}
-
-	setBackground(bg){
-		if (this.background === bg) {
-			return;
-		}
-
-		if(bg === "skybox"){
-			this.skybox = Utils.loadSkybox(new URL(Potree.resourcePath + '/textures/skybox2/').href);
-		}
-
-		this.background = bg;
-		this.dispatchEvent({'type': 'background_changed', 'viewer': this});
 	}
 
 	setDescription (value) {
@@ -1090,11 +1075,6 @@ export class Viewer extends EventDispatcher{
 			let z = parseFloat(tokens[2]);
 
 			this.scene.view.lookAt(new THREE.Vector3(x, y, z));
-		}
-
-		if (Utils.getParameterByName('background')) {
-			let value = Utils.getParameterByName('background');
-			this.setBackground(value);
 		}
 
 		// if(Utils.getParameterByName("elevationRange")){
@@ -1940,49 +1920,10 @@ export class Viewer extends EventDispatcher{
 		let makeCam = this.vrControls.getCamera.bind(this.vrControls);
 
 		{ // clear framebuffer
-			if(viewer.background === "skybox"){
-				renderer.setClearColor(0xff0000, 1);
-			}else if(viewer.background === "gradient"){
-				renderer.setClearColor(0x112233, 1);
-			}else if(viewer.background === "black"){
-				renderer.setClearColor(0x000000, 1);
-			}else if(viewer.background === "white"){
-				renderer.setClearColor(0xFFFFFF, 1);
-			}else{
-				renderer.setClearColor(0x000000, 0);
-			}
+
+			renderer.setClearColor(Potree.backgroundcolor, 1);
 
 			renderer.clear();
-		}
-
-		// render background
-		if(this.background === "skybox"){
-			let {skybox} = this;
-
-			let cam = makeCam();
-			skybox.camera.rotation.copy(cam.rotation);
-			skybox.camera.fov = cam.fov;
-			skybox.camera.aspect = cam.aspect;
-			
-			// let dbg = new THREE.Object3D();
-			let dbg = skybox.parent;
-			// dbg.up.set(0, 0, 1);
-			dbg.rotation.x = Math.PI / 2;
-
-			// skybox.camera.parent = dbg;
-			// dbg.children.push(skybox.camera);
-
-			dbg.updateMatrix();
-			dbg.updateMatrixWorld();
-
-			skybox.camera.updateMatrix();
-			skybox.camera.updateMatrixWorld();
-			skybox.camera.updateProjectionMatrix();
-
-			renderer.render(skybox.scene, skybox.camera);
-			// renderer.render(skybox.scene, cam);
-		}else if(this.background === "gradient"){
-			// renderer.render(this.scene.sceneBG, this.scene.cameraBG);
 		}
 
 		this.renderer.xr.getSession().updateRenderState({
