@@ -97,7 +97,7 @@ export const version = {
 };
 
 /** Colore di sfondo */
-export const backgroundcolor = 0x002040;
+export const backgroundcolor = '#002040';
 /** 
  * Imposta il colore di sfondo
  * @param hexcolor colore esadecimale
