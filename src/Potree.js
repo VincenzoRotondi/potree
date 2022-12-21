@@ -92,7 +92,7 @@ export const version = {
 	name: 'Potree Rocket',
 	major: 1,
 	minor: 10,
-	patch: 1,
+	patch: 2,
 	suffix: ''
 };
 
