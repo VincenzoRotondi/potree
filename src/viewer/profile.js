@@ -2,6 +2,7 @@
 import * as THREE from "../../libs/three.js/build/three.module.js";
 import { Utils } from "../utils.js";
 import { Points } from "../Points.js";
+import {DXFProfileExporter} from "../exporter/DXFProfileExporter.js";
 import { CSVExporter } from "../exporter/CSVExporter.js";
 import { LASExporter } from "../exporter/LASExporter.js";
 import { EventDispatcher } from "../EventDispatcher.js";
@@ -263,6 +264,12 @@ export class ProfileWindow extends EventDispatcher {
 		let backwardIcon = `${exports.resourcePath}/icons/arrow_down.svg`;
 		$('#potree_profile_move_backward').attr('src', backwardIcon);
 
+		let dxf2DIcon = `${exports.resourcePath}/icons/file_dxf_2d.svg`;
+		$('#potree_download_dxf2D_icon').attr('src', dxf2DIcon);
+
+		let dxf3DIcon = `${exports.resourcePath}/icons/file_dxf_3d.svg`;
+		$('#potree_download_dxf3D_icon').attr('src', dxf3DIcon);
+
 		let csvIcon = `${exports.resourcePath}/icons/file_csv_2d.svg`;
 		$('#potree_download_csv_icon').attr('src', csvIcon);
 
@@ -492,6 +499,15 @@ export class ProfileWindow extends EventDispatcher {
 			this.hide();
 		});
 
+		$('#potree_download_dxf2D_icon').click(() => {			
+			$('#potree_download_profile_dxf2D_link').attr('href', this.getDxfUrl(true));
+		});
+
+		$('#potree_download_dxf3D_icon').click(() => {
+			$('#potree_download_profile_dxf3D_link').attr('href', this.getDxfUrl(false));
+		});
+
+
 		$('#potree_download_csv_icon').click(() => {
 			$('#potree_download_profile_ortho_link').attr('href', this.getCsvUrl());
 		});
@@ -525,6 +541,20 @@ export class ProfileWindow extends EventDispatcher {
 		let buffer = LASExporter.toLAS(points);
 		// creazione blob
 		let blob = new Blob([buffer], { type: "application/octet-binary" });
+		// Restituzione url
+		return URL.createObjectURL(blob);
+	}
+
+	/**
+	 * Restituisce l'url del DXF
+	 */
+	getDxfUrl(is2D = false) {
+		// Recupero punti del profilo
+		let points = this.getProfilePoints();
+		// trasformazione in string
+		const string = DXFProfileExporter.toString(points, is2D);
+		// creazione blob
+		const blob = new Blob([string], {type: "text/string"});
 		// Restituzione url
 		return URL.createObjectURL(blob);
 	}
