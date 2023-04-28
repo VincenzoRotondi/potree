@@ -5,17 +5,9 @@
 			<span id="profile_window_title" data-i18n="profile.title">
 			</span>
 		</span>
-		<span id="profileInfo" style="
-		flex-grow: 1; 
-		flex-direction: row;
-		">
+		<span id="profileInfo">
 		</span>
-		<img id="closeProfileContainer" class="button-icon" style="
-		width: 24px; 
-		height: 24px; 
-		margin: 4px;
-		cursor: pointer;
-		" />
+		<img id="closeProfileContainer" class="button-icon" />
 	</div>
 	<div style="
 	position: absolute; 
@@ -40,22 +32,12 @@
 				flex-direction: row; 
 				box-sizing: border-box;
 				">
-				<span data-i18n="profile.nb_points" style="
-				font-family: sans-serif;
-				">
+				<span id="profile_points" data-i18n="profile.nb_points">
 				</span>: &nbsp;
-				<span id="profile_num_points" style="
-				font-family: sans-serif;
-				">-</span>
+				<span id="profile_num_points">-</span>
 				<span style="flex-grow: 1;"></span>
 				<span>
-					<input id="potree_profile_rotate_amount" type="text" maxlength="4" value="10" style="
-						display: inline-block; 
-						width: 2.5em; 
-						vertical-align: top; 
-						background: white;
-						margin: 2px;
-						">
+					<input id="potree_profile_rotate_amount" type="text" maxlength="4" value="10">
 				</span>
 				<img id="potree_profile_rotate_cw" class="text-icon" style="cursor: pointer;"  />
 				<img id="potree_profile_rotate_ccw" class="text-icon" style="cursor: pointer;"  />
@@ -75,54 +57,14 @@
 				</a>
 		</span>
 	</div>
-	<div id="profile_draw_container" style="
-				width: 100%; 
-				flex-grow: 1; 
-				position: relative; height: 100%; 
-				box-sizing: border-box; user-select: none;
-				">
-		<div style="
-					position: absolute; 
-					left: 41px; 
-					top: 0; 
-					bottom: 20; 
-					width: calc(100% - 41px); 
-					height: calc(100% - 20px); 
-					background-color: #000000;
-					">
+	<div id="profile_draw_container">
+		<div id="profile_draw_background">
 		</div>
-		<svg id="profileSVG" style="
-					fill: #DDDDDD;
-					position: absolute; 
-					left: 0; right: 0; 
-					top: 0; bottom: 0; 
-					width: 100%; 
-					height: 100%;
-					font-family: sans-serif;
-					">
+		<svg id="profileSVG">
 		</svg>
-		<div id="profileCanvasContainer" style="
-					position: absolute; 
-					left: 41px; 
-					top: 0; 
-					bottom: 20; 
-					width: calc(100% - 41px); 
-					height: calc(100% - 20px); 
-					/*background-color: #000000;*/
-					">
+		<div id="profileCanvasContainer">
 		</div>
-		<div id="profileSelectionProperties" style="
-					position: absolute; 
-					left: 50px; 
-					top: 10px; 
-					background-color: black;
-					color: white;
-					opacity: 0.7;
-					padding: 5px;
-					border: 1px solid white;
-					user-select: text;
-					font-family: sans-serif;
-					">
+		<div id="profileSelectionProperties">
 			position: asdsadf asdf<br>
 			rgb: 123 423 123
 		</div>
