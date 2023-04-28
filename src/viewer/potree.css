@@ -719,6 +719,7 @@ body {
 .text-icon {
 	opacity: 0.5;
 	height: 24px;
+	cursor: pointer;
 }
 
 .text-icon:hover {
