@@ -276,7 +276,7 @@ export class ProfileWindow extends EventDispatcher {
 		let lasIcon = `${exports.resourcePath}/icons/file_las_3d.svg`;
 		$('#potree_download_las_icon').attr('src', lasIcon);
 
-		let closeIcon = `${exports.resourcePath}/icons/close.svg`;
+		let closeIcon = `${exports.resourcePath}/icons/vr/close_white_24dp.svg`;
 		$('#closeProfileContainer').attr("src", closeIcon);
 
 		this.initTHREE();
