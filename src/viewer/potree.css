@@ -528,9 +528,11 @@ body {
 	background-color: var(--bg-color);
 	position: absolute;
 	width: 84%;
+	min-width: 700px;
 	left: 15%;
 	top: 55%;
 	height: 44%;
+	min-height: 400px;
 	margin: 5px;
 	display: none;
 	box-sizing: border-box;
