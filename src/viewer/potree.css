@@ -496,6 +496,17 @@ body{
 
 #profile_window{
 	background-color:	var(--bg-color);
+	position: absolute; 
+	width: 84%;
+	left: 15%; 
+	top: 55%; 
+	height: 44%;
+	margin: 5px;
+	display: none; 
+	box-sizing: border-box; 
+	z-index:10000;
+	border-radius: 10px;
+	opacity: 0.95;
 }
 
 #profile_titlebar{
@@ -504,6 +515,13 @@ body{
 	font-family: sans-serif;
 	font-size: 1em;
 	font-weight: bold;
+	display: flex; 
+	position: absolute; 
+	height: 30px; 
+	width: 100%; 
+	box-sizing: border-box;
+	border-radius: 10px;
+	cursor: grab;
 }
 
 #profile_window_title{
