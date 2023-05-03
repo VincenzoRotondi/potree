@@ -252,28 +252,28 @@ export class ProfileWindow extends EventDispatcher {
 		this.autoFitEnabled = true; // completely disable/enable
 		this.autoFit = false; // internal
 
-		let cwIcon = `${exports.resourcePath}/icons/arrow_cw.svg`;
+		let cwIcon = `${exports.resourcePath}/icons/vr/ClockwiseSelect.svg`;
 		$('#potree_profile_rotate_cw').attr('src', cwIcon);
 
-		let ccwIcon = `${exports.resourcePath}/icons/arrow_ccw.svg`;
+		let ccwIcon = `${exports.resourcePath}/icons/vr/CounterClockwiseSelect.svg`;
 		$('#potree_profile_rotate_ccw').attr('src', ccwIcon);
 
-		let forwardIcon = `${exports.resourcePath}/icons/arrow_up.svg`;
+		let forwardIcon = `${exports.resourcePath}/icons/vr/BackwardSelect.svg`;
 		$('#potree_profile_move_forward').attr('src', forwardIcon);
 
-		let backwardIcon = `${exports.resourcePath}/icons/arrow_down.svg`;
+		let backwardIcon = `${exports.resourcePath}/icons/vr/ForwardSelect.svg`;
 		$('#potree_profile_move_backward').attr('src', backwardIcon);
 
-		let dxf2DIcon = `${exports.resourcePath}/icons/file_dxf_2d.svg`;
+		let dxf2DIcon = `${exports.resourcePath}/icons/vr/DXF2D.svg`;
 		$('#potree_download_dxf2D_icon').attr('src', dxf2DIcon);
 
-		let dxf3DIcon = `${exports.resourcePath}/icons/file_dxf_3d.svg`;
+		let dxf3DIcon = `${exports.resourcePath}/icons/vr/DXF3D.svg`;
 		$('#potree_download_dxf3D_icon').attr('src', dxf3DIcon);
 
-		let csvIcon = `${exports.resourcePath}/icons/file_csv_2d.svg`;
+		let csvIcon = `${exports.resourcePath}/icons/vr/CSV2D.svg`;
 		$('#potree_download_csv_icon').attr('src', csvIcon);
 
-		let lasIcon = `${exports.resourcePath}/icons/file_las_3d.svg`;
+		let lasIcon = `${exports.resourcePath}/icons/vr/LAS3D.svg`;
 		$('#potree_download_las_icon').attr('src', lasIcon);
 
 		let closeIcon = `${exports.resourcePath}/icons/vr/close_white_24dp.svg`;
