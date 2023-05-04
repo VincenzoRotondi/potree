@@ -980,7 +980,7 @@ export class ProfileWindowController {
 		this.profile = null;
 		this.numPoints = 0;
 		this.threshold = 60 * 1000;
-		this.rotateAmount = 10;
+		this.rotateAmount = 45;
 
 		this.scheduledRecomputeTime = null;
 
