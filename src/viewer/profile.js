@@ -1033,13 +1033,17 @@ export class ProfileWindowController {
 		}
 
 		$("#potree_profile_rotate_cw").click(() => {
-			const radians = THREE.Math.degToRad(this.rotateAmount);
-			rotate(-radians);
+			if (!isNaN(this.rotateAmount)) {
+				const radians = THREE.Math.degToRad(this.rotateAmount);
+				rotate(-radians);
+			}
 		});
 
 		$("#potree_profile_rotate_ccw").click(() => {
-			const radians = THREE.Math.degToRad(this.rotateAmount);
-			rotate(radians);
+			if (!isNaN(this.rotateAmount)) {
+				const radians = THREE.Math.degToRad(this.rotateAmount);
+				rotate(radians);
+			}
 		});
 
 		$("#potree_profile_move_forward").click(() => {
