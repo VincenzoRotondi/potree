@@ -980,7 +980,7 @@ export class ProfileWindowController {
 		this.profile = null;
 		this.numPoints = 0;
 		this.threshold = 60 * 1000;
-		this.rotateAmount = 10;
+		this.rotateAmount = 45;
 
 		this.scheduledRecomputeTime = null;
 
@@ -1033,13 +1033,17 @@ export class ProfileWindowController {
 		}
 
 		$("#potree_profile_rotate_cw").click(() => {
-			const radians = THREE.Math.degToRad(this.rotateAmount);
-			rotate(-radians);
+			if (!isNaN(this.rotateAmount)) {
+				const radians = THREE.Math.degToRad(this.rotateAmount);
+				rotate(-radians);
+			}
 		});
 
 		$("#potree_profile_rotate_ccw").click(() => {
-			const radians = THREE.Math.degToRad(this.rotateAmount);
-			rotate(radians);
+			if (!isNaN(this.rotateAmount)) {
+				const radians = THREE.Math.degToRad(this.rotateAmount);
+				rotate(radians);
+			}
 		});
 
 		$("#potree_profile_move_forward").click(() => {
