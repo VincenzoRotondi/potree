@@ -553,7 +553,6 @@ body {
 	width: 100%;
 	box-sizing: border-box;
 	border-radius: 10px;
-	cursor: grab;
 }
 
 #profile_window_title {
@@ -584,7 +583,7 @@ body {
 
 #potree_profile_rotate_amount {
 	display: inline-block;
-	width: 2.5em;
+	width: 3em;
 	vertical-align: top;
 	background: white;
 	margin: 2px;
@@ -672,6 +671,29 @@ body {
 .tooltip:hover .tooltiptext {
 	visibility: visible;
 	opacity: 1;
+}
+
+.noselect {
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+	-moz-user-select: none;
+	/* Old versions of Firefox */
+	-ms-user-select: none;
+	/* Internet Explorer/Edge */
+	user-select: none;
+	/* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.grabbable {
+	cursor: grab;
+}
+
+.grabbable:active {
+	cursor: grabbing;
 }
 
 /** END CUSTOM PROFILEWINDOW */
