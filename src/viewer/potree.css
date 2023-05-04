@@ -689,6 +689,14 @@ body {
 	/* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+.grabbable {
+	cursor: grab;
+}
+
+.grabbable:active {
+	cursor: grabbing;
+}
+
 /** END CUSTOM PROFILEWINDOW */
 
 .profile-container-button {
