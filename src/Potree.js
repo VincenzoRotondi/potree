@@ -105,6 +105,15 @@ export const backgroundcolor = '#002040';
 export function SetBackgroundcolor(hexcolor){
 	backgroundcolor = hexcolor;
 };
+/** Fattore di scala per la distanza minima dalla camera */
+export const nearScalingFactor = 10.0;
+/**
+ * Imposta il fattore di scala per la distanza minima dalla camera
+ * @param factor default 10.0
+ */
+export function SetNearScalingFactor(factor = 10.0){
+	nearScalingFactor = factor;
+};
 
 export let lru = new LRU();
 
