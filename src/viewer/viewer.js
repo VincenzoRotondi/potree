@@ -1731,7 +1731,7 @@ export class Viewer extends EventDispatcher{
 			const tEnd = performance.now();
 
 			if(result.lowestSpacing !== Infinity){
-				let near = result.lowestSpacing * Potree.nearScalingFactor; // Parametrizzato per evitare i tagli nelle foto
+				let near = result.lowestSpacing * Potree.GetNearScalingFactor(); // Parametrizzato per evitare i tagli nelle foto
 				let far = -this.getBoundingBox().applyMatrix4(camera.matrixWorldInverse).min.z;
 
 				far = Math.max(far * 1.5, 10000);
