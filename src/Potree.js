@@ -105,18 +105,22 @@ export const backgroundcolor = '#002040';
 export function SetBackgroundcolor(hexcolor){
 	backgroundcolor = hexcolor;
 };
-/** Fattore di scala per la distanza minima dalla camera */
-let _nearScalingFactor = 10.0;
-/** Recupera il fattore di scala per la distanza minima dalla camera */
-export function GetNearScalingFactor(){
-	return _nearScalingFactor;
+/** Flag per indicare se ci si trova in una foto rettangolare */
+let _isRect = false;
+/** Recupera il flag per indicare se ci si trova in una foto rettangolare */
+export function GetIsRect(){
+	return _isRect;
 }
 /**
- * Imposta il fattore di scala per la distanza minima dalla camera
- * @param factor default 10.0
+ * Imposta il flag per indicare se ci si trova in una foto rettangolare
+ * @param value default false
  */
-export function SetNearScalingFactor(factor = 10.0){
-	_nearScalingFactor = isNaN(factor) ? 10.0 : factor;
+export function SetIsRect(value = false){
+	// Se il valore passato non è di tipo boolean viene impostato falso
+	if (typeof value !== 'boolean'){
+		value = false;
+	}
+	_isRect = value;
 };
 
 export let lru = new LRU();
