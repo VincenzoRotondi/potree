@@ -1731,7 +1731,7 @@ export class Viewer extends EventDispatcher{
 			const tEnd = performance.now();
 
 			if(result.lowestSpacing !== Infinity){
-				let near = result.lowestSpacing * Potree.GetNearScalingFactor(); // Parametrizzato per evitare i tagli nelle foto
+				let near = result.lowestSpacing * 10.0;
 				let far = -this.getBoundingBox().applyMatrix4(camera.matrixWorldInverse).min.z;
 
 				far = Math.max(far * 1.5, 10000);
@@ -1742,7 +1742,12 @@ export class Viewer extends EventDispatcher{
 				if(near === Infinity){
 					near = 0.1;
 				}
-				
+
+				// Imposta il near a 0.01 se ci si trova in una foto rettangolare
+				if (Potree.GetIsRect()){
+					near = 0.01;
+				}
+
 				camera.near = near;
 				camera.far = far;
 			}else{
