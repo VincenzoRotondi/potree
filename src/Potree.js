@@ -91,8 +91,8 @@ export const workerPool = new WorkerPool();
 export const version = {
 	name: 'Potree Rocket',
 	major: 1,
-	minor: 11,
-	patch: 1,
+	minor: 12,
+	patch: 0,
 	suffix: ''
 };
 
@@ -104,6 +104,23 @@ export const backgroundcolor = '#002040';
  */
 export function SetBackgroundcolor(hexcolor){
 	backgroundcolor = hexcolor;
+};
+/** Flag per indicare se ci si trova in una foto rettangolare */
+let _isRect = false;
+/** Recupera il flag per indicare se ci si trova in una foto rettangolare */
+export function GetIsRect(){
+	return _isRect;
+}
+/**
+ * Imposta il flag per indicare se ci si trova in una foto rettangolare
+ * @param value default false
+ */
+export function SetIsRect(value = false){
+	// Se il valore passato non è di tipo boolean viene impostato falso
+	if (typeof value !== 'boolean'){
+		value = false;
+	}
+	_isRect = value;
 };
 
 export let lru = new LRU();
