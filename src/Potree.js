@@ -91,8 +91,8 @@ export const workerPool = new WorkerPool();
 export const version = {
 	name: 'Potree Rocket',
 	major: 1,
-	minor: 11,
-	patch: 1,
+	minor: 12,
+	patch: 0,
 	suffix: ''
 };
 
