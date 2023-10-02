@@ -6,6 +6,8 @@ import {Line2} from "../../libs/three.js/lines/Line2.js";
 import {LineGeometry} from "../../libs/three.js/lines/LineGeometry.js";
 import {LineMaterial} from "../../libs/three.js/lines/LineMaterial.js";
 
+const LINECOLOR = 0x0000ff;
+
 function createHeightLine(){
 	let lineGeometry = new LineGeometry();
 
@@ -82,7 +84,7 @@ function createCircleRadiusLine(){
 	]);
 
 	const lineMaterial = new LineMaterial({ 
-		color: 0xff0000, 
+		color: LINECOLOR, 
 		linewidth: 2, 
 		resolution:  new THREE.Vector2(1000, 1000),
 		gapSize: 1,
@@ -127,7 +129,7 @@ function createCircleLine(){
 	geometry.setPositions(coordinates);
 
 	const material = new LineMaterial({ 
-		color: 0xff0000, 
+		color: LINECOLOR, 
 		dashSize: 5, 
 		gapSize: 2,
 		linewidth: 2, 
@@ -162,7 +164,7 @@ function createLine(){
 	]);
 
 	const material = new LineMaterial({ 
-		color: 0xff0000, 
+		color: LINECOLOR, 
 		linewidth: 2, 
 		resolution:  new THREE.Vector2(1000, 1000),
 		gapSize: 1,
@@ -207,7 +209,7 @@ function createCircle(){
 	geometry.setPositions(coordinates);
 
 	const material = new LineMaterial({ 
-		color: 0xff0000, 
+		color: LINECOLOR, 
 		dashSize: 5, 
 		gapSize: 2,
 		linewidth: 2, 
@@ -300,7 +302,7 @@ export class Measure extends THREE.Object3D {
 		this.maxMarkers = Number.MAX_SAFE_INTEGER;
 
 		this.sphereGeometry = new THREE.SphereGeometry(0.4, 10, 10);
-		this.color = new THREE.Color(0xff0000);
+		this.color = new THREE.Color(LINECOLOR);
 
 		this.spheres = [];
 		this.edges = [];
@@ -364,7 +366,7 @@ export class Measure extends THREE.Object3D {
 			]);
 
 			let lineMaterial = new LineMaterial({
-				color: 0xff0000, 
+				color: LINECOLOR, 
 				linewidth: 2, 
 				resolution:  new THREE.Vector2(1000, 1000),
 			});
