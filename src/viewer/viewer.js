@@ -1212,7 +1212,7 @@ export class Viewer extends EventDispatcher{
 			elButtons.append(imgMenuToggle);
 			elButtons.append(imgMapToggle);
 
-
+			/**
 			VRButton.createButton(this.renderer).then(vrButton => {
 
 				if(vrButton == null){
@@ -1246,7 +1246,8 @@ export class Viewer extends EventDispatcher{
 					this.dispatchEvent({type: "vr_end"});
 				});
 			});
-
+			*/
+			
 			this.mapView = new MapView(this);
 			this.mapView.init();
 
