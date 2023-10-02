@@ -2,6 +2,8 @@
 import * as THREE from "../../libs/three.js/build/three.module.js";
 import {Utils} from "../utils.js";
 
+const LINECOLOR = 0x0000ff;
+
 export class Profile extends THREE.Object3D{
 
 	constructor () {
@@ -19,14 +21,14 @@ export class Profile extends THREE.Object3D{
 		this._modifiable = true;
 
 		this.sphereGeometry = new THREE.SphereGeometry(0.4, 10, 10);
-		this.color = new THREE.Color(0xff0000);
-		this.lineColor = new THREE.Color(0xff0000);
+		this.color = new THREE.Color(LINECOLOR);
+		this.lineColor = new THREE.Color(LINECOLOR);
 	}
 
 	createSphereMaterial () {
 		let sphereMaterial = new THREE.MeshLambertMaterial({
 			//shading: THREE.SmoothShading,
-			color: 0xff0000,
+			color: LINECOLOR,
 			depthTest: false,
 			depthWrite: false}
 		);
@@ -101,7 +103,7 @@ export class Profile extends THREE.Object3D{
 			this.edges.push(edge);
 
 			let boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-			let boxMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, transparent: true, opacity: 0.2});
+			let boxMaterial = new THREE.MeshBasicMaterial({color: LINECOLOR, transparent: true, opacity: 0.2});
 			let box = new THREE.Mesh(boxGeometry, boxMaterial);
 			box.visible = false;
 
