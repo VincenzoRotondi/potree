@@ -123,6 +123,28 @@ export function SetIsRect(value = false){
 	_isRect = value;
 };
 
+/** Valore del near clipping plane */
+let _nearClip = 0.01;
+/** Recupera il valore del near clipping plane */
+export function GetNearClip() {
+	return _nearClip;
+}
+/**
+ * Imposta il valore del near clipping plane
+ * @param value default 0.01
+ */
+export function SetNearClip(value = 0.01) {
+	// Se il valore passato non è di tipo number viene impostato 0.01
+	if (typeof value !== 'number') {
+		value = 0.01;
+	}
+	// Se il valore passato è inferiore a 0.01 viene impostato 0.01
+	if (value < 0.01) {
+		value = 0.01;
+	}
+	_nearClip = value;
+};
+
 export let lru = new LRU();
 
 // console.log(`${version.name} ${version.major}.${version.minor}.${version.patch}${version.suffix}`);
