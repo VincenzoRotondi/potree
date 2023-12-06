@@ -1744,9 +1744,10 @@ export class Viewer extends EventDispatcher{
 					near = 0.1;
 				}
 
-				// Imposta il near a 0.01 se ci si trova in una foto rettangolare
-				if (Potree.GetIsRect()){
-					near = 0.01;
+				// Controlla se ci si trova in una foto rettangolare
+				if (Potree.GetIsRect()) {
+					// Sovrascrive il valore del near clipping plane con quello passato
+					near = Potree.GetNearClip();
 				}
 
 				camera.near = near;
