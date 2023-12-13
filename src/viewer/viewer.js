@@ -1743,12 +1743,6 @@ export class Viewer extends EventDispatcher{
 					near = 0.1;
 				}
 
-				// Controlla se ci si trova in una foto rettangolare
-				if (Potree.GetIsRect()) {
-					// Sovrascrive il valore del near clipping plane con quello passato
-					near = Potree.GetNearClip();
-				}
-
 				camera.near = near;
 				camera.far = far;
 			}else{
@@ -1757,6 +1751,12 @@ export class Viewer extends EventDispatcher{
 
 			if(this.scene.cameraMode == CameraMode.ORTHOGRAPHIC) {
 				camera.near = -camera.far;
+			}
+
+			// Controlla se ci si trova in una foto rettangolare
+			if (Potree.GetIsRect()) {
+				// Sovrascrive il valore del near clipping plane con quello passato
+				camera.near = Potree.GetNearClip();
 			}
 		} 
 		
